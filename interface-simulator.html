@@ -1541,8 +1541,8 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;/script&gt;
 &lt;div id=&quot;dive-pages&quot;&gt;
   &lt;div class=&quot;viz-controls&quot;&gt;
-    &lt;label class=&quot;form-label&quot;&gt;Définition &lt;select class=&quot;form-select&quot; id=&quot;dd-res&quot;&gt;&lt;option value=&quot;160,128&quot;&gt;160 × 128&lt;/option&gt;&lt;option value=&quot;176,176&quot;&gt;176 × 176&lt;/option&gt;&lt;option value=&quot;320,240&quot; selected&gt;320 × 240&lt;/option&gt;&lt;option value=&quot;502,410&quot;&gt;502 × 410&lt;/option&gt;&lt;option value=&quot;600,450&quot;&gt;600 × 450&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
-    &lt;label class=&quot;form-label&quot;&gt;Diagonale &lt;select class=&quot;form-select&quot; id=&quot;dd-size&quot;&gt;&lt;option&gt;2&lt;/option&gt;&lt;option selected&gt;2.4&lt;/option&gt;&lt;option&gt;2.8&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+    &lt;label class=&quot;form-label&quot;&gt;Définition &lt;select class=&quot;form-select&quot; id=&quot;dd-res&quot;&gt;&lt;option value=&quot;160,128&quot;&gt;160 × 128&lt;/option&gt;&lt;option value=&quot;176,176&quot;&gt;176 × 176&lt;/option&gt;&lt;option value=&quot;320,240&quot;&gt;320 × 240&lt;/option&gt;&lt;option value=&quot;536,240&quot; selected&gt;536 × 240 — AMOLED 1,91″&lt;/option&gt;&lt;option value=&quot;502,410&quot;&gt;502 × 410&lt;/option&gt;&lt;option value=&quot;600,450&quot;&gt;600 × 450&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+    &lt;label class=&quot;form-label&quot;&gt;Diagonale &lt;select class=&quot;form-select&quot; id=&quot;dd-size&quot;&gt;&lt;option selected&gt;1.91&lt;/option&gt;&lt;option&gt;2&lt;/option&gt;&lt;option&gt;2.4&lt;/option&gt;&lt;option&gt;2.8&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
     &lt;label class=&quot;form-label&quot;&gt;Page &lt;select class=&quot;form-select&quot; id=&quot;dd-page&quot;&gt;&lt;option value=&quot;dive&quot;&gt;Plongée&lt;/option&gt;&lt;option value=&quot;stop&quot;&gt;Palier&lt;/option&gt;&lt;option value=&quot;compass&quot;&gt;Boussole&lt;/option&gt;&lt;option value=&quot;ostc&quot;&gt;OSTC nano&lt;/option&gt;&lt;option value=&quot;chrono&quot; selected&gt;Profondeur et chrono&lt;/option&gt;&lt;option value=&quot;ccr&quot;&gt;CCR — trois cellules&lt;/option&gt;&lt;option value=&quot;deco&quot;&gt;Déco et boussole&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
   &lt;/div&gt;
   &lt;label class=&quot;form-label&quot; for=&quot;dd-scale&quot;&gt;Calibration : &lt;output id=&quot;dd-scale-value&quot;&gt;61,55 %&lt;/output&gt;&lt;/label&gt;
@@ -1637,7 +1637,7 @@ txt(mode===&#x27;stop&#x27;?&#x27;6&#x27;:&#x27;24&#x27;,12,160,35,mode===&#x27;
 const pixels=ctx.getImageData(0,0,w,h).data;let on=0;for(let i=0;i&lt;pixels.length;i+=4)if(Math.max(pixels[i],pixels[i+1],pixels[i+2])&gt;32)on++;
 root.querySelector(&#x27;#dd-info&#x27;).textContent=`Vue calibrée • ${d}″ • zone ${mmw.toFixed(1)} × ${mmh.toFixed(1)} mm • pixels lumineux ≈ ${(100*on/(w*h)).toFixed(1)} % • données fictives`;
 }
-root.querySelectorAll(&#x27;select&#x27;).forEach(el=&gt;el.addEventListener(&#x27;change&#x27;,draw));root.querySelector(&#x27;#dd-scale&#x27;).addEventListener(&#x27;input&#x27;,draw);draw();
+root.querySelectorAll(&#x27;select&#x27;).forEach(el=&gt;el.addEventListener(&#x27;change&#x27;,()=&gt;{if(el.id===&#x27;dd-res&#x27;&amp;&amp;el.value===&#x27;536,240&#x27;)root.querySelector(&#x27;#dd-size&#x27;).value=&#x27;1.91&#x27;;draw();}));root.querySelector(&#x27;#dd-scale&#x27;).addEventListener(&#x27;input&#x27;,draw);draw();
 })();
 &lt;/script&gt;
 
